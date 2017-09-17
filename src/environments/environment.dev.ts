@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   apiEndpoint: 'http://edusys.local/api/v1',
   loginUri: '/login',
   accessTokenUri: '/auth/token',

@@ -4,5 +4,9 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiEndpoint: 'http://edusys.local/api/v1',
+  loginUri: '/login',
+  accessTokenUri: '/auth/token',
+  refreshTokenUri: '/oauth/token/refresh',
 };

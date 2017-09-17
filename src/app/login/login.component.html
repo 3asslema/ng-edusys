@@ -2,13 +2,13 @@
     <div class="panel panel-default">
         <div class="panel-heading">Se connecter</div>
         <div class="panel-body">
-            <form class="for">
+            <form class="form">
                 <fieldset>
                     <div class="form-group">
                         <label for="email" class="col-md-12 control-label">Adress Email</label>
 
                         <div class="col-md-12">
-                            <input id="email" type="email" class="form-control" name="email" placeholder="Votre adresse email" required autofocus>
+                            <input [(ngModel)]="credentials.email" type="email" class="form-control" name="email" placeholder="Votre adresse email" required autofocus>
                         </div>
                     </div>
 
@@ -16,7 +16,7 @@
                         <label for="password" class="col-md-12 control-label">Mot de passe</label>
 
                         <div class="col-md-12">
-                            <input id="password" type="password" class="form-control" placeholder="Mot de passe" name="password" required>
+                            <input type="password" [(ngModel)]="credentials.password" class="form-control" placeholder="Mot de passe" name="password" required>
                         </div>
                     </div>
                     <br />
