@@ -10,4 +10,10 @@ export class LoginComponent implements OnInit {
    }
   ngOnInit() {
   }
+  login() {
+    console.log('login');
+  }
+  recover() {
+    console.log('recover');
+  }
 }
