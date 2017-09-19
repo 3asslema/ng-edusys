@@ -1,26 +1,34 @@
-import { AppService } from './app.service';
-import { AuthenticationService } from './authentication.service';
-import { routing } from './app.routing';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { ErrorHandler, NgModule } from '@angular/core';
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { MyApp } from './app.component';
+import { HomePage } from '../pages/home/home';
+import { ListPage } from '../pages/list/list';
+
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
+    MyApp,
+    HomePage,
+    ListPage
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpModule,
-    routing,
+    IonicModule.forRoot(MyApp),
   ],
-  providers: [AuthenticationService, AppService],
-  bootstrap: [AppComponent]
+  bootstrap: [IonicApp],
+  entryComponents: [
+    MyApp,
+    HomePage,
+    ListPage
+  ],
+  providers: [
+    StatusBar,
+    SplashScreen,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
+  ]
 })
-export class AppModule { }
+export class AppModule {}
