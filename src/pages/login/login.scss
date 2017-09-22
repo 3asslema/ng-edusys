@@ -1,0 +1,31 @@
+page-login {
+    .scroll-content {
+        background: url('../assets/images/background.png');
+        background-color: #f7f7f7;
+        background-repeat: repeat-x;
+        background-position: center bottom;
+        background-size: 90%;
+    }
+    .login-form {
+        position: relative;
+        background-color: white;
+        border: 1px solid #e3e3e3;
+        width: 350px;
+        margin: auto;
+    }
+    .login-form ion-icon {
+        color: #718fff;
+    }
+    .logo {
+        margin: auto;
+        display: block;
+        width: 144px;
+    }
+    .login-title {
+        color: #696e7d;
+    }
+    .footer-md::before {
+        top: 0px;
+        height: 0px;
+    }
+}

@@ -1,0 +1,113 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>Nouvelle Inscription</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12>
+                <ion-item-divider color="primary">
+                    Adminstration</ion-item-divider>
+                <ion-row>
+                    <ion-col col-6>
+                        <ion-item>
+                            <ion-label floating>Année Scolaire</ion-label>
+                            <ion-select [(ngModel)]="admission.scolarYear">
+                                <ion-option *ngFor="let scolarYear of facility.scolar_years">
+                                    {{scolarYear.name}}
+                                </ion-option>
+                            </ion-select>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label floating>Frais d'inscription</ion-label>
+                            <ion-input type="text" name="parent[name]"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-6>
+                        <ion-item>
+                            <ion-label floating>Pièces Requise</ion-label>
+                            <ion-input type="text" name="parent[name]"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label floating>Status</ion-label>
+                            <ion-input type="text" name="parent[name]"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-6 padding>
+                <ion-list>
+                    <ion-item-divider color="primary">
+                        Contact</ion-item-divider>
+                    <ion-item-divider color="light-grey" margin-top>
+                        <ion-icon name="person"></ion-icon> Info Personnelle</ion-item-divider>
+                    <ion-item>
+                        <ion-label floating>Nom et Prénom</ion-label>
+                        <ion-input type="text" name="parent[name]"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>CIN (Card d'Identité Nationale)</ion-label>
+                        <ion-input type="text" name="parent[name]"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Téléphone Mobile</ion-label>
+                        <ion-input type="text" name="parent[name]"></ion-input>
+                    </ion-item>
+                    <ion-item-divider color="light-grey" margin-top>
+                        <ion-icon name="home"></ion-icon>
+                        Adresse Physique</ion-item-divider>
+                    <ion-item>
+                        <ion-label floating>Adresse</ion-label>
+                        <ion-input type="text" name="parent[address]"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Code Postal</ion-label>
+                        <ion-input type="text" name="parent[postal_code]"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Cité</ion-label>
+                        <ion-input type="text" name="parent[city]"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Pays</ion-label>
+                        <ion-input type="text" name="parent[country]"></ion-input>
+                    </ion-item>
+                    <ion-item-divider color="light-grey" margin-top>Compte</ion-item-divider>
+                    <ion-item>
+                        <ion-label floating>Email</ion-label>
+                        <ion-input type="text" name="parent[email]"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label floating>Password</ion-label>
+                        <ion-input name="password" type="parent[password]"></ion-input>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+            <ion-col col-6 padding>
+                <ion-list>
+                    <ion-item-divider color="primary">Elève</ion-item-divider>
+                    <ion-item-divider color="clear" margin-top>Info Personnel</ion-item-divider>
+                    <ion-item>
+                        <ion-label floating>Nom et Prénom</ion-label>
+                        <ion-input type="text" name="name"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Date de naissance</ion-label>
+                        <ion-datetime displayFormat="DD/MM/YYYY"></ion-datetime>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

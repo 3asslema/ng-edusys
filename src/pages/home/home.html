@@ -1,18 +1,60 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+        <ion-title>{{title}}</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only clear>
+          <ion-icon name="add"></ion-icon>
+          </button>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+    <div *ngIf="isCurrentFacilitySet; then facilitytBlock; else selectFacilityBlock"></div>
+    <ng-template #facilitytBlock>
+        <div *ngIf="facility.admissions.length > 0; then admissionsListBlock; else noAdmissionsFoundBlock"></div>
+        <ng-template #admissionsListBlock>
+            <ion-list>
+                <ion-item>
+                    <button color="primary" ion-item *ngFor="let admission of facility.admissions" (click)="admissionTapped($event, admission)">
+              {{admission.student.name}}
+            </button>
+                </ion-item>
+            </ion-list>
+        </ng-template>
+        <ng-template #noAdmissionsFoundBlock>
+            <ion-list>
+                <ion-item>
+                    <button ion-item>
+                  <ion-icon name="eye-off" item-start></ion-icon>
+                  Aucune inscription trouvée.
+                  <ion-icon color="warning" name="alert" item-end></ion-icon>
+                </button>
+                </ion-item>
+            </ion-list>
+        </ng-template>
+        <button ion-button icon-left (click)="newAdmission()">
+                <ion-icon name="add"></ion-icon>Nouvelle Inscription</button>
+    </ng-template>
+    <ng-template #selectFacilityBlock>
+        <ion-grid>
+            <ion-row>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+                <ion-col *ngFor="let facility of facilities">
+                    <ion-card padding>
+                        <ion-card-title>{{facility.name}}</ion-card-title>
+                        <p padding>
+                            {{ facility.address }} <br /> {{ facility.phone }}
+                        </p>
+                        <button color="secondary" text-center full icon-left ion-item (click)="facilityTapped($event, facility)">
+                                <ion-icon name="school"></ion-icon> Se connecter</button>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+    </ng-template>
 </ion-content>
