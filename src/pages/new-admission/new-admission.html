@@ -6,7 +6,7 @@
     </button>
         <ion-title>Nouvelle Inscription</ion-title>
         <ion-buttons end>
-            <button ion-button icon-only color="light">
+            <button ion-button icon-only color="light" (click)="save()">
             <ion-icon name="add"></ion-icon>
             </button>
         </ion-buttons>
@@ -15,7 +15,7 @@
 
 
 <ion-content padding>
-    <ion-grid>
+    <ion-grid margin-bottom>
         <ion-row>
             <ion-col col-12>
                 <ion-item-divider color="primary">
@@ -24,7 +24,7 @@
                     <ion-col col-6>
                         <ion-item>
                             <ion-label floating>Année Scolaire</ion-label>
-                            <ion-select [(ngModel)]="admission.scolarYear" (ngModelChange)="onScolarYearChange($event)">
+                            <ion-select [(ngModel)]="admission.scolar_year" (ngModelChange)="onScolarYearChange($event)">
                                 <ion-option *ngFor="let scolarYear of facility.scolar_years;let i=index" value="{{scolarYear.id}}">
                                     {{scolarYear.name}}
                                 </ion-option>
@@ -50,7 +50,7 @@
                     <ion-col col-12>
                         <ion-item>
                             <ion-label floating>Frais d'inscription</ion-label>
-                            <ion-select [(ngModel)]="admission.tuitionFees" multiple="true">
+                            <ion-select [(ngModel)]="admission.tuition_fees" multiple="true">
                                 <ion-option *ngFor="let tuitioFee of facility.tuition_fees" value="{{tuitioFee.id}}">
                                     {{tuitioFee.name}}
                                 </ion-option>
@@ -69,58 +69,80 @@
                         <ion-icon name="person"></ion-icon> Info Personnelle</ion-item-divider>
                     <ion-item>
                         <ion-label floating>Nom et Prénom</ion-label>
-                        <ion-input type="text" name="parent[name]"></ion-input>
+                        <ion-input type="text" [(ngModel)]="admission.contact.name"></ion-input>
                     </ion-item>
                     <ion-item>
                         <ion-label floating>CIN (Card d'Identité Nationale)</ion-label>
-                        <ion-input type="text" name="parent[name]"></ion-input>
+                        <ion-input type="text" [(ngModel)]="admission.contact.extra_fields.cin"></ion-input>
                     </ion-item>
                     <ion-item>
                         <ion-label floating>Téléphone Mobile</ion-label>
-                        <ion-input type="text" name="parent[name]"></ion-input>
+                        <ion-input type="text" [(ngModel)]="admission.contact.extra_fields.mobile_phone"></ion-input>
                     </ion-item>
                     <ion-item-divider color="light-grey" margin-top>
                         <ion-icon name="home"></ion-icon>
                         Adresse Physique</ion-item-divider>
                     <ion-item>
                         <ion-label floating>Adresse</ion-label>
-                        <ion-input type="text" name="parent[address]"></ion-input>
+                        <ion-input type="text" [(ngModel)]="admission.contact.address.address"></ion-input>
                     </ion-item>
                     <ion-item>
                         <ion-label floating>Code Postal</ion-label>
-                        <ion-input type="text" name="parent[postal_code]"></ion-input>
+                        <ion-input type="text" [(ngModel)]="admission.contact.address.zip_code"></ion-input>
                     </ion-item>
                     <ion-item>
                         <ion-label floating>Cité</ion-label>
-                        <ion-input type="text" name="parent[city]"></ion-input>
+                        <ion-input type="text" [(ngModel)]="admission.contact.address.city"></ion-input>
                     </ion-item>
                     <ion-item>
                         <ion-label floating>Pays</ion-label>
-                        <ion-input type="text" name="parent[country]"></ion-input>
+                        <ion-input type="text" [(ngModel)]="admission.contact.address.country"></ion-input>
                     </ion-item>
-                    <ion-item-divider color="light-grey" margin-top>Compte</ion-item-divider>
+                    <ion-item-divider color="light-grey" margin-top>
+                        <ion-icon name="at"></ion-icon>
+                        Compte</ion-item-divider>
                     <ion-item>
                         <ion-label floating>Email</ion-label>
-                        <ion-input type="text" name="parent[email]"></ion-input>
+                        <ion-input type="text" [(ngModel)]="admission.contact.email"></ion-input>
                     </ion-item>
 
                     <ion-item>
                         <ion-label floating>Password</ion-label>
-                        <ion-input name="password" type="parent[password]"></ion-input>
+                        <ion-input type="password" [(ngModel)]="admission.contact.password"></ion-input>
                     </ion-item>
                 </ion-list>
             </ion-col>
             <ion-col col-6 padding>
                 <ion-list>
                     <ion-item-divider color="primary">Elève</ion-item-divider>
-                    <ion-item-divider color="clear" margin-top>Info Personnel</ion-item-divider>
+                    <ion-item-divider color="light-grey" margin-top>
+                        <ion-icon name="person"></ion-icon> Info Personnelle</ion-item-divider>
                     <ion-item>
                         <ion-label floating>Nom et Prénom</ion-label>
-                        <ion-input type="text" name="name"></ion-input>
+                        <ion-input type="text" [(ngModel)]="admission.student.name"></ion-input>
                     </ion-item>
                     <ion-item>
                         <ion-label floating>Date de naissance</ion-label>
-                        <ion-datetime displayFormat="DD/MM/YYYY"></ion-datetime>
+                        <ion-datetime [(ngModel)]="admission.student.extra_fields.birthdate" displayFormat="DD/MM/YYYY"></ion-datetime>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Gendre</ion-label>
+                        <ion-select [(ngModel)]="admission.student.extra_fields.gender">
+                            <ion-option value="m">Garçon</ion-option>
+                            <ion-option value="f">Fille</ion-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item-divider color="light-grey" margin-top>
+                        <ion-icon name="at"></ion-icon>
+                        Compte</ion-item-divider>
+                    <ion-item>
+                        <ion-label floating>Email</ion-label>
+                        <ion-input type="text" [(ngModel)]="admission.student.email"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label floating>Password</ion-label>
+                        <ion-input [(ngModel)]="admission.student.password" type="password"></ion-input>
                     </ion-item>
                 </ion-list>
             </ion-col>

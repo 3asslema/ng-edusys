@@ -1,3 +1,6 @@
+import { AdmissionPage } from './../admission/admission';
+import { Contact } from './../../app/models/contact';
+import { Student } from './../../app/models/student';
 import { Admission } from './../../app/models/admission';
 import { AppService } from './../../app/services/app.service';
 import { Component } from '@angular/core';
@@ -23,27 +26,46 @@ export class NewAdmissionPage {
      private _app: AppService,
     ) {
     this.facility = this._app.getFacility();
-    console.log(this.facility);
     this.admission = new Admission();
     this.admission.facility = this.facility;
-    this.admission.createdBy = this._app.getUser();
-    this.admission.academicYear = this._app.getAcademicYear();
+    this.admission.created_by = this._app.getUser();
+    this.admission.academic_year = this._app.getAcademicYear();
+    let student = new Student();
+    student.extra_fields.gender = 'male';
+    this.admission.student = student;
+    this.admission.contact = new Contact();
   
   }
   onScolarYearChange(id){
     console.log(this.admission)
     let scolarYear = this.getScolarYearById(id);
-    console.log(scolarYear)    
+
     // Reset tuition fees
-    this.admission.tuitionFees = [];
+    this.admission.tuition_fees = [];
     let scolarTuitionFee = this.getTuitionFeeById(scolarYear.tuition_fee_id)
-    this.admission.tuitionFees.push(scolarTuitionFee.id)
+    this.admission.tuition_fees.push(scolarTuitionFee.id)
   }
   getTuitionFeeById(id){
     return this.facility.tuition_fees.find(fee => fee.id == id);
   }
   getScolarYearById(id){
     return this.facility.scolar_years.find(scolarYear => scolarYear.id == id);
+  }
+  save(){
+    let that = this;
+    console.log(this.admission);
+    that._app.helper.createLoader('Enregistrement en cours...');      
+    this._app.post('/admission',{'admission': this.admission})
+    .subscribe((data: any) => {
+      that._app.helper.updateLoader('Inscription ajouté avec succès...'); 
+      this.facility.admissions.push(data);
+      this.navCtrl.setRoot(AdmissionPage);
+      
+      },
+      (error) => {
+          this._app.helper.showToast(error.json().error)
+      },
+    )
   }
 
 }

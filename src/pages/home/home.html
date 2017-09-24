@@ -19,7 +19,7 @@
         <ng-template #admissionsListBlock>
             <ion-list>
                 <ion-item>
-                    <button color="primary" ion-item *ngFor="let admission of facility.admissions" (click)="admissionTapped($event, admission)">
+                    <button color="light" ion-item *ngFor="let admission of facility.admissions" (click)="admissionTapped($event, admission)">
               {{admission.student.name}}
             </button>
                 </ion-item>

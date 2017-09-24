@@ -1,3 +1,4 @@
+import { AdmissionPage } from './../pages/admission/admission';
 import { NewAdmissionPage } from './../pages/new-admission/new-admission';
 import { AuthenticationService } from './services/authentication.service';
 import { HelperService } from './helper.service';
@@ -20,6 +21,7 @@ import { HttpModule } from '@angular/http';
     HomePage,
     LoginPage,
     NewAdmissionPage,
+    AdmissionPage,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,7 @@ import { HttpModule } from '@angular/http';
     HomePage,
     LoginPage,
     NewAdmissionPage,
+    AdmissionPage,
   ],
   providers: [
     StatusBar,

@@ -1,3 +1,4 @@
+import { HelperService } from './../helper.service';
 import { Injectable, Inject } from '@angular/core';
 import { Http, Headers, RequestOptions, RequestMethod, Response } from '@angular/http';
 import { environment } from '../../environments/environment';
@@ -25,7 +26,7 @@ export class AppService {
   public options: any;
 
 
-  constructor(private _http: Http) {
+  constructor(private _http: Http, public helper: HelperService) {
     // We set the current environment when initiating
   this.environment = environment;
   }
@@ -37,6 +38,7 @@ setRequestOptions() {
   this.headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': 'Bearer' + ' ' + (this.getAccessToken()) });
   this.headers.append('Access-Control-Allow-Origin', '*');
   this.headers.append('Access-Control-Allow-Credentials', true);
+  this.headers.append('X-Requested-With', 'XMLHttpRequest')
   this.options = new RequestOptions({ headers: this.headers });
 }
 
