@@ -1,3 +1,7 @@
+import { AppService } from './../../app/services/app.service';
+import { CurrencyPipe } from '@angular/common';
+import { TuitionFee } from './../../app/models/tuition-fee';
+import { Admission } from './../../app/models/admission';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -13,12 +17,22 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'admission.html',
 })
 export class AdmissionPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+public admission: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _app: AppService) {
+    let admission = this.navParams.get('admission');
+    this.admission = new Admission()
+    this.admission = Object.assign(this.admission,admission)
+    this.admission.tuition_fees.forEach(fee => {
+        fee.formatedCost = fee.cost/1000;
+        fee.installmentPerYear = (12/fee.periodicity);
+        fee.costPerYear = fee.formatedCost * fee.installmentPerYear;
+    });
+    this.admission.scolar_year = this._app.getScolarYearById(this.admission.scolar_year_id);
+  }
+  generatePdf(){
+    console.log(this.admission)
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AdmissionPage');
-  }
+
 
 }

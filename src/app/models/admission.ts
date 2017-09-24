@@ -2,6 +2,8 @@ import { Contact } from './contact';
 import { Student } from './student';
 import { ScolarYear } from './scolar-year';
 export class Admission {
+    constructor(){
+    }
     public statusEnum = {
         MISSING_REQUIREMENTS: 'mr',
         PARTIALLY_PAID: 'pp',
@@ -19,5 +21,13 @@ export class Admission {
     public academic_year: any;
 
     attachments = {};
+
+    get total(){
+        let total =0;
+        this.tuition_fees.forEach(fee => {
+            total += fee.costPerYear;
+        });
+        return total
+    }
 
 }

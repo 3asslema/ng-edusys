@@ -59,7 +59,8 @@ export class NewAdmissionPage {
     .subscribe((data: any) => {
       that._app.helper.updateLoader('Inscription ajouté avec succès...'); 
       this.facility.admissions.push(data);
-      this.navCtrl.setRoot(AdmissionPage);
+      this._app.setFacility(this.facility);
+      this.navCtrl.setRoot(AdmissionPage,{admission: data});
       
       },
       (error) => {

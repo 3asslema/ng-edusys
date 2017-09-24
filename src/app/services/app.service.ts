@@ -22,6 +22,7 @@ export class AppService {
   public environment: any;
   public accessToken: string;
   public user: string;
+  public facility;
   public headers: any;
   public options: any;
 
@@ -192,6 +193,12 @@ setOrganisation(organisation) {
 getOrganisation(){
   return JSON.parse(localStorage.getItem('organisation'));
   
+}
+getScolarYearById(id){
+    this.facility = this.getFacility();
+  return this.facility.scolar_years.find(scolarYear => {
+    return scolarYear.id == id;
+  });
 }
 /**
    * Handle http request error

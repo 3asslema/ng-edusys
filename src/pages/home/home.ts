@@ -1,3 +1,4 @@
+import { AdmissionPage } from './../admission/admission';
 import { NewAdmissionPage } from './../new-admission/new-admission';
 import { LoginPage } from './../login/login';
 import { HelperService } from './../../app/helper.service';
@@ -54,7 +55,7 @@ export class HomePage {
   }
   }
   admissionTapped(event, admission){
-    console.log(admission);
+    this.navCtrl.push(AdmissionPage, {admission: admission});
   }
   facilityTapped(event, facility){
     this._app.setFacility(facility);
