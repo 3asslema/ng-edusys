@@ -13,6 +13,7 @@ import { NavController, NavParams } from 'ionic-angular';
 export class HomePage {
   public title = "EduSys";
   public user;
+  public academicYear: any;
   public facilities: any;
   public facility: any;
   public isCurrentFacilitySet = false;
@@ -26,6 +27,7 @@ export class HomePage {
       this._app.remove('facility');
     }
     this.facilities = this._app.getFacilities();
+    this.academicYear = this._app.getAcademicYear();
     this.facility = this._app.getFacility();
     if(this.facility){
       this.isCurrentFacilitySet =true;
@@ -39,6 +41,7 @@ export class HomePage {
       this.user = data.user;
       that._app.setUser(data.user);
       that._app.setFacilities(data.user.facilities);
+      that._app.setAcademicYear(data.academicYear);
       
       },
       (error) => {

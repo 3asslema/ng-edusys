@@ -151,6 +151,20 @@ getFacilities(){
 }
 
 /**
+ * Set academic year
+ */
+setAcademicYear(academicYear){
+  localStorage.setItem('academic_year', JSON.stringify(academicYear))
+}
+
+/**
+ * Get academic year
+ */
+getAcademicYear(){
+  return JSON.parse(localStorage.getItem('academic_year'));
+}
+
+/**
  * Set current facility
  */
 setFacility(facility){

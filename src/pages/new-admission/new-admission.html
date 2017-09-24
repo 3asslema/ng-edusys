@@ -5,8 +5,12 @@
       <ion-icon name="menu"></ion-icon>
     </button>
         <ion-title>Nouvelle Inscription</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only color="light">
+            <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
-
 </ion-header>
 
 
@@ -20,25 +24,37 @@
                     <ion-col col-6>
                         <ion-item>
                             <ion-label floating>Année Scolaire</ion-label>
-                            <ion-select [(ngModel)]="admission.scolarYear">
-                                <ion-option *ngFor="let scolarYear of facility.scolar_years">
+                            <ion-select [(ngModel)]="admission.scolarYear" (ngModelChange)="onScolarYearChange($event)">
+                                <ion-option *ngFor="let scolarYear of facility.scolar_years;let i=index" value="{{scolarYear.id}}">
                                     {{scolarYear.name}}
                                 </ion-option>
                             </ion-select>
-                        </ion-item>
-                        <ion-item>
-                            <ion-label floating>Frais d'inscription</ion-label>
-                            <ion-input type="text" name="parent[name]"></ion-input>
                         </ion-item>
                     </ion-col>
                     <ion-col col-6>
                         <ion-item>
                             <ion-label floating>Pièces Requise</ion-label>
-                            <ion-input type="text" name="parent[name]"></ion-input>
+                            <ion-select [(ngModel)]="admission.attachments.requirements" multiple="true">
+                                <ion-option *ngFor="let requirement of facility.admission_requirements" value="{{requirement.id}}">
+                                    {{ requirement.name }}
+                                </ion-option>
+                            </ion-select>
                         </ion-item>
-                        <ion-item>
+                        <!-- <ion-item>
                             <ion-label floating>Status</ion-label>
                             <ion-input type="text" name="parent[name]"></ion-input>
+                        </ion-item> -->
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-12>
+                        <ion-item>
+                            <ion-label floating>Frais d'inscription</ion-label>
+                            <ion-select [(ngModel)]="admission.tuitionFees" multiple="true">
+                                <ion-option *ngFor="let tuitioFee of facility.tuition_fees" value="{{tuitioFee.id}}">
+                                    {{tuitioFee.name}}
+                                </ion-option>
+                            </ion-select>
                         </ion-item>
                     </ion-col>
                 </ion-row>
