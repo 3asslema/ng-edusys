@@ -14,7 +14,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding #receipt>
     <ion-list>
         <ion-item>
             <ion-grid>
@@ -40,19 +40,19 @@
         <ion-item>
             <ion-grid>
                 <ion-row *ngFor="let fee of admission.tuition_fees">
-                    <ion-col>
+                    <ion-col italic>
                         {{fee.name}}
                     </ion-col>
                     <ion-col>
-                        {{fee.formatedCost| currency:'TND':true}} chaque {{ fee.installmentPerYear > 1 ?"mois":"Année"}}
+                        {{fee.formatedCost| currency:'TND':true}} chaque {{ fee.installmentPerYear > 1 ? fee.periodicity + " mois":"année"}}
 
                     </ion-col>
                     <ion-col text-right>
                         {{fee.costPerYear | currency:'TND':true }}
                     </ion-col>
                 </ion-row>
-                <ion-row border-top>
-                    <ion-col bold>
+                <ion-row border-top bold padding-top margin-top>
+                    <ion-col>
                         Total
                     </ion-col>
                     <ion-col>

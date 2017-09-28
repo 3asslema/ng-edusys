@@ -2,23 +2,23 @@ import { AppService } from './../../app/services/app.service';
 import { CurrencyPipe } from '@angular/common';
 import { TuitionFee } from './../../app/models/tuition-fee';
 import { Admission } from './../../app/models/admission';
-import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Component, OnInit, Inject,ElementRef, ViewChild } from '@angular/core';
+import * as jsPDF from 'jspdf';
+import * as html2canvas from 'html2canvas';
 
-/**
- * Generated class for the AdmissionPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @Component({
   selector: 'page-admission',
   templateUrl: 'admission.html',
 })
 export class AdmissionPage {
+  @ViewChild('receipt') element: ElementRef;
 public admission: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _app: AppService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+     private _app: AppService,
+    ) {
+      
     let admission = this.navParams.get('admission');
     this.admission = new Admission()
     this.admission = Object.assign(this.admission,admission)
@@ -30,7 +30,14 @@ public admission: any;
     this.admission.scolar_year = this._app.getScolarYearById(this.admission.scolar_year_id);
   }
   generatePdf(){
-    console.log(this.admission)
+    html2canvas(this.element.nativeElement, <Html2Canvas.Html2CanvasOptions>{
+      onrendered: (canvas: HTMLCanvasElement) =>{
+        var pdf = new jsPDF('p','pt','a4');
+        pdf.addHTML(canvas, () =>{
+          pdf.save('web.pdf');
+        });
+      }
+    });
   }
 
 
