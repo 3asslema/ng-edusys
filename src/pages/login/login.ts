@@ -45,11 +45,9 @@ login(){
       that._auth.setToken(data.token)
       //this.events.publish('user:login');
       that.navCtrl.setRoot(HomePage)
-      that._helper.dismissLoader()        
       
     },
     error => {
-      that._helper.dismissLoader()
       console.log(error);
       that._helper.showToast(error.error)
       

@@ -7,7 +7,9 @@ import { Component, OnInit, Inject,ElementRef, ViewChild } from '@angular/core';
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
 
-
+declare global {
+  interface Window { html2canvas: any; }
+}
 @Component({
   selector: 'page-admission',
   templateUrl: 'admission.html',
@@ -30,16 +32,12 @@ public admission: any;
     this.admission.scolar_year = this._app.getScolarYearById(this.admission.scolar_year_id);
   }
   generatePdf(){
-    html2canvas(this.element.nativeElement, <Html2Canvas.Html2CanvasOptions>{
-      onrendered: (canvas: HTMLCanvasElement) =>{
+    
+    window.html2canvas = html2canvas
         var pdf = new jsPDF('p','pt','a4');
-        pdf.addHTML(canvas, () =>{
+        pdf.addHTML(this.element.nativeElement, () =>{
           pdf.save('web.pdf');
         });
-      }
-    });
   }
-
-
 
 }
