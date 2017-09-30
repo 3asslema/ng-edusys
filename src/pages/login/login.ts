@@ -37,19 +37,17 @@ export class LoginPage {
  */
 login(){
   let that = this
-  that._helper.createLoader('Connecting...')
+  that._helper.createLoader('Connecting...');
   this._auth.login(this.loginForm.value)
   .subscribe(
     data => {
-      that._helper.updateLoader('Processing...')
       that._auth.setToken(data.token)
       //this.events.publish('user:login');
       that.navCtrl.setRoot(HomePage)
       
     },
     error => {
-      console.log(error);
-      that._helper.showToast(error.error)
+        this._helper.showToast(error.json().error)
       
     },
     () => {

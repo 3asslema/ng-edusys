@@ -29,7 +29,7 @@ export class HelperService {
           spinner: spinner,
           duration: 3000
       });
-      this.loader.present();
+      return this.loader.present();
   }
 
   public updateLoader(message: string){
