@@ -1,3 +1,4 @@
+import { HomePage } from './../home/home';
 import { AdmissionPage } from './../admission/admission';
 import { Contact } from './../../app/models/contact';
 import { Student } from './../../app/models/student';
@@ -37,7 +38,6 @@ export class NewAdmissionPage {
   
   }
   onScolarYearChange(id){
-    console.log(this.admission)
     let scolarYear = this.getScolarYearById(id);
 
     // Reset tuition fees
@@ -53,14 +53,13 @@ export class NewAdmissionPage {
   }
   save(){
     let that = this;
-    console.log(this.admission);
     that._app.helper.createLoader('Enregistrement en cours...');      
     this._app.post('/admission',{'admission': this.admission})
     .subscribe((data: any) => {
-      that._app.helper.updateLoader('Inscription ajouté avec succès...'); 
-      this.facility.admissions.push(data);
+      that._app.helper.updateLoader('Inscription ajouté avec succès...');
+      this.facility.admissions.push(data.admission);
       this._app.setFacility(this.facility);
-      this.navCtrl.setRoot(AdmissionPage,{admission: data});
+      this.navCtrl.setRoot(HomePage);
       
       },
       (error) => {

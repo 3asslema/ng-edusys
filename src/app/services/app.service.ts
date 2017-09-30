@@ -200,6 +200,16 @@ getScolarYearById(id){
     return scolarYear.id == id;
   });
 }
+
+/**
+ * Get facility by id
+ */
+getFacilityById(id){
+  let facilities = this.getFacilities();
+  return facilities.find(facility => {
+    return facility.id == id;
+  });
+}
 /**
    * Handle http request error
    * @param error

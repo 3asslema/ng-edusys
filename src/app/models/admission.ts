@@ -27,6 +27,7 @@ export class Admission {
         this.tuition_fees.forEach(fee => {
             total += fee.costPerYear;
         });
+        console.log(total);
         return total
     }
 

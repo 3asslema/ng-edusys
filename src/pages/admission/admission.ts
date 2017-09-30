@@ -29,8 +29,8 @@ public admission: any;
         fee.installmentPerYear = (12/fee.periodicity);
         fee.costPerYear = fee.formatedCost * fee.installmentPerYear;
     });
-    this.admission.scolar_year = this._app.getScolarYearById(this.admission.scolar_year_id);
   }
+
   generatePdf(){
     
     window.html2canvas = html2canvas
