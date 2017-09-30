@@ -30,6 +30,13 @@ export class LoginPage {
         'email': ['', [Validators.required, Validators.email]],
         'password': ['', Validators.required]
       })
+      const toast = this._helper.toastCtrl.create({
+        message: "You'll need to add '142.4.203.1 edusys.local' to your hosts file.",
+        duration: 4000,
+        position: 'middle'
+      });
+    
+      toast.present();
   }
 
   /**

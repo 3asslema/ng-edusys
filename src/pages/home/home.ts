@@ -67,5 +67,9 @@ export class HomePage {
   newAdmission(){
     this.navCtrl.push(NewAdmissionPage,{facility:this.facility});
   }
+  logout(){
+    localStorage.clear();
+    this.navCtrl.setRoot(LoginPage);
+  }
 
 }
