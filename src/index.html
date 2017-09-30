@@ -14,15 +14,27 @@
 
     <!-- cordova.js required for cordova apps -->
     <script src="cordova.js"></script>
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23144936-8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    <!-- un-comment this code to enable service worker
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('service worker installed'))
-        .catch(err => console.error('Error', err));
-    }
-  </script>-->
+        function gtag() {
+            dataLayer.push(arguments)
+        };
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23144936-8');
+    </script>
+
+    <!-- un-comment this code to enable service worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(() => console.log('service worker installed'))
+                .catch(err => console.error('Error', err));
+        }
+    </script>
 
     <link href="build/main.css" rel="stylesheet">
 
